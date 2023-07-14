@@ -730,6 +730,7 @@ bool NvDecoder::DecodeLockSurface(Buffer const* encFrame,
   }
 
   // Kick off HW decoding;
+  cerr << "kickoff decoding " << endl;
   ThrowOnCudaError(m_api.cuvidParseVideoData(p_impl->m_hParser, &packet),
                    __LINE__);
 
@@ -792,6 +793,7 @@ bool NvDecoder::DecodeLockSurface(Buffer const* encFrame,
      */
     decCtx.out_pdata.bsl = decCtx.bsl;
   }
+  cerr << "returning " << ret << endl;
 
   return ret;
 }
