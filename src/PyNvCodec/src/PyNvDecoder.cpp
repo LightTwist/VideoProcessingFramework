@@ -512,9 +512,11 @@ bool PyNvDecoder::DecodeSurface(DecodeContext& ctx)
         p_surf = getDecodedSurfaceFromPacket(nullptr, nullptr);
       } catch (decoder_error& dec_exc) {
         dec_error = true;
+        cerr << "weird decode error" << endl;
         cerr << dec_exc.what() << endl;
       } catch (cuvid_parser_error& cvd_exc) {
         dmx_error = true;
+        cerr << "weird parser error" << endl;
         cerr << cvd_exc.what() << endl;
       }
     } while (p_surf && !p_surf->Empty());
