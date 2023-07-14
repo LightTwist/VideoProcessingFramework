@@ -514,11 +514,11 @@ bool PyNvDecoder::DecodeSurface(DecodeContext& ctx)
         p_surf = getDecodedSurfaceFromPacket(nullptr, nullptr);
       } catch (decoder_error& dec_exc) {
         dec_error = true;
-        cerr << "weird decode error" << endl;
+        cerr << "weird decode error during flush" << endl;
         cerr << dec_exc.what() << endl;
       } catch (cuvid_parser_error& cvd_exc) {
         dmx_error = true;
-        cerr << "weird parser error" << endl;
+        cerr << "weird parser error during flush" << endl;
         cerr << cvd_exc.what() << endl;
       }
     } while (p_surf && !p_surf->Empty());
@@ -546,9 +546,11 @@ bool PyNvDecoder::DecodeSurface(DecodeContext& ctx)
         break;
       }
     } catch (decoder_error& dec_exc) {
+      cerr << "weird decode error during decode" << endl;
       dec_error = true;
       cerr << dec_exc.what() << endl;
     } catch (cuvid_parser_error& cvd_exc) {
+      cerr << "weird parser error during decode" << endl;
       dmx_error = true;
       cerr << cvd_exc.what() << endl;
     }
@@ -603,6 +605,7 @@ bool PyNvDecoder::DecodeSurface(DecodeContext& ctx)
     }
 
     if (dec_error && upDemuxer) {
+      cerr << "decode error - resetting decoder" << endl;
       time_point<system_clock> then = system_clock::now();
 
       MuxingParams params;
