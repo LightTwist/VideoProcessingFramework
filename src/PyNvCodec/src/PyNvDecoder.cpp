@@ -208,7 +208,9 @@ PyNvDecoder::getDecodedSurfaceFromPacket(const py::array_t<uint8_t>* pPacket,
 
   upDecoder->SetInput(elementaryVideo ? elementaryVideo.get() : nullptr, 0U);
   if (TASK_EXEC_FAIL == upDecoder->Execute()) {
-    return nullptr;
+    std::cerr << "Decoder failed, throwing" << std::endl;
+    throw runtime_error("Decoder failed");
+    // return nullptr;
   }
 
   return (Surface*)upDecoder->GetOutput(0U);
