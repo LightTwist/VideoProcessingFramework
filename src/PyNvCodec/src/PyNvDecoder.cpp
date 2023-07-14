@@ -168,7 +168,8 @@ Surface* PyNvDecoder::getDecodedSurface(NvdecDecodeFrame* decoder,
     decoder->SetInput(elementaryVideo, 0U);
     decoder->SetInput(pktData, 1U);
     if (TASK_EXEC_FAIL == decoder->Execute()) {
-      break;
+      throw runtime_error("Decoder failed");
+      // break;
     }
 
     surface = (Surface*)decoder->GetOutput(0U);
