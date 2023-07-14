@@ -734,6 +734,10 @@ bool NvDecoder::DecodeLockSurface(Buffer const* encFrame,
   ThrowOnCudaError(m_api.cuvidParseVideoData(p_impl->m_hParser, &packet),
                    __LINE__);
 
+  if (1 == p_impl->decode_error.load()) {
+    throw decoder_error("HW decoder faced error. Re-create instance.");
+  }
+
   lock_guard<mutex> lock(p_impl->m_mtxVPFrame);
   /* Add incoming packet data to map;
    */
