@@ -460,6 +460,7 @@ TaskExecStatus NvdecDecodeFrame::Run()
      */
     return pEncFrame ? TASK_EXEC_SUCCESS : TASK_EXEC_FAIL;
   } catch (exception& e) {
+    cerr << "decode error in task" << endl;
     cerr << e.what() << endl;
     return TASK_EXEC_FAIL;
   }
