@@ -348,7 +348,7 @@ int NvDecoder::ReconfigureDecoder(CUVIDEOFORMAT* pVideoFormat)
       (pVideoFormat->coded_height > p_impl->m_nMaxHeight)) {
     // For VP9, let driver  handle the change if new width/height >
     // maxwidth/maxheight
-    if ((p_impl->m_eCodec != cudaVideoCodec_VP9) ||
+    if ((p_impl->m_eCodec != cudaVideoCodec_VP9 && p_impl->m_eCodec != cudaVideoCodec_VP8) ||
         p_impl->m_bReconfigExternal) {
       throw runtime_error(
           "Reconfigure Not supported when width/height > maxwidth/maxheight");
