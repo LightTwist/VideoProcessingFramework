@@ -37,13 +37,13 @@ option(FETCHCONTENT_QUIET OFF)
 include(FetchContent)
 fetchcontent_declare(
     pybind11
-    URL https://github.com/pybind/pybind11/archive/v2.10.0.tar.gz
+    URL https://github.com/pybind/pybind11/archive/v2.11.1.tar.gz
     URL_HASH
-        SHA256=eacf582fa8f696227988d08cfc46121770823839fe9e301a20fbce67e7cd70ec
+        SHA256=d475978da0cdc2d43b73f30910786759d593a9d8ee05b1b6846d1eb16c6d2e0c
 )
 fetchcontent_makeavailable(pybind11)
 
-pybind11_add_module(_PyNvCodec MODULE 
+pybind11_add_module(_PyNvCodec MODULE
 	src/PyBufferUploader.cpp
 	src/PyCudaBufferDownloader.cpp
 	src/PyFFMpegDecoder.cpp
