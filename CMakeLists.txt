@@ -19,4 +19,9 @@ cmake_minimum_required(VERSION 3.21)
 project(PyNvCodec)
 
 set(CMAKE_CXX_STANDARD 17)
+
+option(GLIBCXX_USE_CXX11_ABI "Use the new GCC C++11 ABI" 1)
+add_definitions(-D_GLIBCXX_USE_CXX11_ABI=${GLIBCXX_USE_CXX11_ABI})
+
+
 add_subdirectory(src)
